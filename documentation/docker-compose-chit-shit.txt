@@ -1,0 +1,13 @@
+docker-compose build
+docker-compose up -d
+docker-compose logs -f
+docker-compose down
+
+
+DOCKER:
+====================================
+SEE RUN CONTAINERS:
+docker ps
+
+OPEN PSQL IN CONTAINER:
+docker exec -it <container_id> psql -U <db_user> <db_name>

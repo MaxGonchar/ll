@@ -1,0 +1,31 @@
+Flask Python: creating REST APIs and Swagger Documentation - https://www.imaginarycloud.com/blog/flask-python/#Howto
+https://luolingchun.github.io/flask-openapi3/v3.x/
+Dockerizing Flask with Postgres, Gunicorn, and Nginx - https://testdriven.io/blog/dockerizing-flask-with-postgres-gunicorn-and-nginx/
+
+almbic - https://github.com/miguelgrinberg/flask-migrate/
+https://realpython.com/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/
+
+auth:
+https://frontegg.com/guides/api-authentication-api-authorization
+https://stackoverflow.blog/2021/10/06/best-practices-for-authentication-and-authorization-for-rest-apis/
+https://budibase.com/blog/tutorials/rest-api-authentication/
+flow:
+https://stackoverflow.com/questions/27726066/jwt-refresh-token-flow
+
+validation/serialisation
+https://docs.pydantic.dev/latest/
+
+DDT
+https://flask-debugtoolbar.readthedocs.io/en/latest/
+
+Logging
+https://www.youtube.com/watch?v=9L77QExPmI0&ab_channel=mCoding
+
+Testing
+https://testdriven.io/blog/flask-pytest/
+
+readthedocs
+https://blog.miguelgrinberg.com/post/how-to-dockerize-a-react-flask-project
+
+Factory Repo patterns
+https://medium.com/@lawsontaylor/the-factory-and-repository-pattern-with-sqlalchemy-and-pydantic-33cea9ae14e0
