@@ -40,6 +40,8 @@ as developer I want to have:
 - build a container with app to test
 - I need an ability to build a separated test env to run isolated test
 
+https://www.youtube.com/watch?v=oPQgFxHcjAw
+
 =================================
 ============ BACKLOG ============
 =================================

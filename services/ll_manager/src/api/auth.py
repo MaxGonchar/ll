@@ -1,13 +1,10 @@
 from http import HTTPStatus
-from datetime import datetime
 
 from flask import Response, jsonify
 from flask_openapi3 import APIBlueprint, Tag
 
+from src.controllers import auth_controllers
 from src.schema.auth import SignOnRequest, SignOnResponse
-from src.models import User
-from src.extensions import db
-import src.controllers.auth_controllers as auth_controllers
 
 auth_api = APIBlueprint("/auth", __name__)
 

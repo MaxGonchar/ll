@@ -15,9 +15,9 @@ required:
 - python 3.11
 - docker
 
+In `envs` dir\
 Create `.env.dev` and `.env.dev.local` file with env vars you need (look at `.env.dev.sample`)
 
-For developing from local station:
 #### set up an environment:
 - `cd services/ll_manager`
 - `python3.11 -m venv venv`
@@ -26,21 +26,26 @@ For developing from local station:
 - `pip install -r dev_requirements.txt`
 
 #### set up env vars:
-In `.env.dev.local`
-replace POSTGRES_HOST with "localhost"
-replace POSTGRES_PORT with port you want
+In `.env.dev.local` and `.env.test.local`
+replace POSTGRES_HOST value with "0.0.0.0"
+replace POSTGRES_PORT value with port you want
 
 provide execute permission to `app.sh`, `postgres.sh`
 `chmod +x app.sh`
 `chmod +x postgres.sh`
 
-**./app.sh run** - up db in container and start app
-**./app.sh stop** - down db container
-**./app.sh test** - run tests
-
-
 #### apply db migrations
-`flask db upgrade`
+**./scripts/app.sh upgrade**
+
+**./scripts/app.sh run** - up db in container and start app\
+**./scripts/app.sh stop** - down db container\
+**./scripts/app.sh test** - run tests
+
+
+#### access postgres
+**./scripts/postgres.sh**\
+to exit\
+`Ctrl + P` followed by `Ctrl + Q`
 
 ---------------------------------------------------------------------------------------------------
 

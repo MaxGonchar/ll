@@ -14,11 +14,6 @@ class User:
 
 
 def _get_user(email):
-    print(os.environ["POSTGRES_USER"])
-    print(os.environ["POSTGRES_PASSWORD"])
-    print(os.environ["POSTGRES_HOST"])
-    print(os.environ["POSTGRES_DB"])
-    print(os.environ["POSTGRES_PORT"])
     engine = create_engine(f'postgresql://{os.environ["POSTGRES_USER"]}:{os.environ["POSTGRES_PASSWORD"]}@{os.environ["POSTGRES_HOST"]}:{os.environ["POSTGRES_PORT"]}/{os.environ["POSTGRES_DB"]}')
 
     with engine.connect() as con:
