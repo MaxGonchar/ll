@@ -1,6 +1,7 @@
+import os
+
 from sqlalchemy import create_engine
 from sqlalchemy.sql import text
-import os
 
 import src.repos.auth_repo as subj
 from src import app
@@ -18,9 +19,9 @@ def _get_user(email):
 
     with engine.connect() as con:
         users = con.execute(text("SELECT * FROM users WHERE email=:email"), {"email": email}).all()
-    
+
     return users
-        
+
 
 
 def test_add():

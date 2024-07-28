@@ -4,6 +4,7 @@ python:
 - [flask-openapi3](https://luolingchun.github.io/flask-openapi3/v3.x/)
 - [SQLAlchemy](https://www.sqlalchemy.org/)
 - [Flask-Migrate](https://flask-migrate.readthedocs.io/en/latest/#why-use-flask-migrate-vs-alembic-directly)
+- [Flask-JWT-Extended](https://flask-jwt-extended.readthedocs.io/en/stable/index.html)
 
 db:
 - [postgres](https://www.postgresql.org/)
