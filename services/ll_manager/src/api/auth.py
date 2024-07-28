@@ -13,13 +13,13 @@ _tag = Tag(name="Auth")
 
 
 @auth_api.post(
-        "/sign_on",
+        "/register",
         tags=[_tag],
         summary="create new profile",
         responses={HTTPStatus.CREATED: SignOnResponse},
     )
-def sign_on(body: SignOnRequest) -> Response:
-    resp = auth_controllers.sign_on(body)
+def register(body: SignOnRequest) -> Response:
+    resp = auth_controllers.register(body)
     return resp.model_dump_json(), 201
 
 
