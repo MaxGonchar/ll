@@ -1,8 +1,15 @@
-__pycache__
-.mypy_cache
-.pytest_cache
-.ruff_cache
-venv
+# IDE settings
+.vscode/
 
-.env*
-!.env*sample
+# Python cache
+__pycache__/
+*.py[cod]
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Virtual environments
+venv/
+
+# OS generated files
+.DS_Store

@@ -4,7 +4,7 @@ from src.extensions import db
 from src.models.user import User
 
 
-def add_user(user):
+def add_user(user) -> None:
     db.session.add(
         User(
             first=user.first,
