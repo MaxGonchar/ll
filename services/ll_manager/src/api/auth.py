@@ -20,7 +20,7 @@ _tag = Tag(name="Auth")
     )
 def register(body: SignOnRequest) -> Response:
     resp = auth_controllers.register(body)
-    return resp.model_dump_json(), 201
+    return resp, 201
 
 
 @auth_api.post("/log_in")
