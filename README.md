@@ -64,6 +64,9 @@ in test mode you can tun integration tests\
 to exit\
 `Ctrl + P` followed by `Ctrl + Q`
 
+#### type checking
+`mypy src`
+
 ---------------------------------------------------------------------------------------------------
 
 ### Tests

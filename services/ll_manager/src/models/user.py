@@ -3,14 +3,18 @@ from uuid import uuid4
 
 from sqlalchemy import TIMESTAMP, VARCHAR
 from sqlalchemy.dialects.postgresql import JSON, UUID
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
 from sqlalchemy.sql import func
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from src.extensions import db
 
 
-class User(db.Model):
+class Base(DeclarativeBase):
+    pass
+
+
+class User(Base):
     __tablename__ = "users"
 
     id: Mapped[str] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid4)

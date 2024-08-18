@@ -7,7 +7,7 @@ from src.schema.auth import SignOnRequest, SignOnResponse
 from src.models.user import User
 
 
-def get_current_time():
+def get_current_time() -> datetime:
     return datetime.now()
 
 
