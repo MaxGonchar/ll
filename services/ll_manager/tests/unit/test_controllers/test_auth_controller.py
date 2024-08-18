@@ -1,4 +1,4 @@
-from flask import json
+import json
 from datetime import datetime
 import src.controllers.auth_controllers as subj
 from unittest.mock import patch

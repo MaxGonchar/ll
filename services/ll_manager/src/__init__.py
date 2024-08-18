@@ -11,6 +11,7 @@ from src.extensions import db
 # for alembic
 from src.models import User
 
+#TODO: add /api to all routes
 app = OpenAPI(__name__)
 app.config.from_object("src.config.Config")
 
@@ -20,6 +21,12 @@ jwt = JWTManager(app)
 
 app.register_api(auth_api)
 
+# TODO: remove this route
 @app.get("/")
 def hello_world() -> Response:
     return jsonify(hello="world!!!")
+
+
+@app.get("/health")
+def health() -> Response:
+    return jsonify(status="ok")

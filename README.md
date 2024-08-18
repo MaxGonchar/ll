@@ -16,9 +16,6 @@ required:
 - python 3.11
 - docker
 
-In `envs` dir\
-Create `.env.dev` and `.env.dev.local` file with env vars you need (look at `.env.dev.sample`)
-
 #### set up an environment:
 - `cd services/ll_manager`
 - `python3.11 -m venv venv`
@@ -26,25 +23,44 @@ Create `.env.dev` and `.env.dev.local` file with env vars you need (look at `.en
 - `pip install -r requirements.txt`
 - `pip install -r dev_requirements.txt`
 
-#### set up env vars:
-In `.env.dev.local` and `.env.test.local`
-replace POSTGRES_HOST value with "0.0.0.0"
-replace POSTGRES_PORT value with port you want
-
 provide execute permission to `app.sh`, `postgres.sh`
 `chmod +x app.sh`
 `chmod +x postgres.sh`
 
-#### apply db migrations
-**./scripts/app.sh upgrade**
+#### run app in dev mode
+`./scripts/app.sh dev`
+- up postgres docker container with volume
+- apply migrations
+- run app
+- when app stop, down the db container
 
-**./scripts/app.sh run** - up db in container and start app\
-**./scripts/app.sh stop** - down db container\
-**./scripts/app.sh test** - run tests
+#### run app in test mode
+`./scripts/app.sh test`
+- up postgres docker container with volume
+- apply migrations
+- run app
+- when app stop, down the db container, remove volume
+in test mode you can tun integration tests\
+`pytest tests/integration`
 
+#### run unit tests
+`./scripts/app.sh unit_test`
+- up postgres docker container with volume
+- apply migrations
+- run unit tests
+- down the db container
+- remove volume
+
+#### run integration tests
+`./scripts/app.sh integ_test`
+- up postgres docker container with volume
+- build and up app container (tag: "test")
+- run integration tests
+- down all containers
+- remove volume
 
 #### access postgres
-**./scripts/postgres.sh**\
+`./scripts/postgres.sh`\
 to exit\
 `Ctrl + P` followed by `Ctrl + Q`
 
