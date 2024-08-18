@@ -1,3 +1,4 @@
+# TODO: clear db before running tests
 from datetime import datetime
 import os
 

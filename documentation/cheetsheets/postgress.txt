@@ -1,0 +1,2 @@
+open db in container
+psql -U <user_name> <db_name>

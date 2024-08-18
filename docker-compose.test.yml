@@ -1,19 +1,26 @@
-version: '3.8'
-
 services:
-  # web:
-  #   build: ./services/ll_manager
-  #   command: ./entrypoint.sh
-  #   ports:
-  #     - 5001:5000
-  #   env_file:
-  #     - ./.env.dev
-  #   depends_on:
-  #     - postgres
+  ll_manager:
+    image: ll_manager:test
+    build: ./services/ll_manager
+    command: ./entrypoint.sh
+    env_file:
+      - envs/.env.test_integ
+    ports:
+      - 5000:5000
+    depends_on:
+      - postgres
 
+  # TODO: specify a particular version of image
   postgres:
     image: postgres:13
-    env_file:
-      - ./envs/.env.test.local
+    volumes:
+      - postgres_data_test:/var/lib/postgresql/data/
     ports:
       - "${POSTGRES_PORT}:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+
+volumes:
+  postgres_data_test:

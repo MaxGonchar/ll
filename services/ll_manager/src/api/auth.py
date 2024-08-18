@@ -6,7 +6,7 @@ from flask_openapi3 import APIBlueprint, Tag
 from src.controllers import auth_controllers
 from src.schema.auth import SignOnRequest, SignOnResponse
 
-auth_api = APIBlueprint("/auth", __name__)
+auth_api = APIBlueprint("auth", __name__, url_prefix="/auth")
 
 _tag = Tag(name="Auth")
 
