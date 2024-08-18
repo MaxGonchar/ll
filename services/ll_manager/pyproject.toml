@@ -1,3 +1,8 @@
+[tool.mypy]
+exclude = [
+    "^src/migrations/",
+]
+
 [tool.black]
 line-length = 79
 

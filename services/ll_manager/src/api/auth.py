@@ -1,7 +1,7 @@
 from http import HTTPStatus
 
 from flask import Response, jsonify
-from flask_openapi3 import APIBlueprint, Tag
+from flask_openapi3 import APIBlueprint, Tag  # type: ignore [import-untyped]
 
 from src.controllers import auth_controllers
 from src.schema.auth import SignOnRequest, SignOnResponse
@@ -18,7 +18,7 @@ _tag = Tag(name="Auth")
         summary="create new profile",
         responses={HTTPStatus.CREATED: SignOnResponse},
     )
-def register(body: SignOnRequest) -> Response:
+def register(body: SignOnRequest) -> tuple[str, int]:
     resp = auth_controllers.register(body)
     return resp, 201
 
