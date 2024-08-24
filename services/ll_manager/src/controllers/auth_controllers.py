@@ -1,14 +1,15 @@
+from datetime import UTC, datetime
 from uuid import uuid4
+
 from flask_jwt_extended import create_access_token, create_refresh_token
-from datetime import datetime
 
 import src.repos.auth_repo as repo
-from src.schema.auth import SignOnRequest, SignOnResponse
 from src.models.user import User
+from src.schema.auth import SignOnRequest, SignOnResponse
 
 
 def get_current_time() -> datetime:
-    return datetime.now()
+    return datetime.now(UTC)
 
 
 def register(user: SignOnRequest) -> str:

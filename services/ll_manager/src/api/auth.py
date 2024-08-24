@@ -11,13 +11,12 @@ auth_api = APIBlueprint("auth", __name__, url_prefix="/auth")
 _tag = Tag(name="Auth")
 
 
-
 @auth_api.post(
-        "/register",
-        tags=[_tag],
-        summary="create new profile",
-        responses={HTTPStatus.CREATED: SignOnResponse},
-    )
+    "/register",
+    tags=[_tag],
+    summary="create new profile",
+    responses={HTTPStatus.CREATED: SignOnResponse},
+)
 def register(body: SignOnRequest) -> tuple[str, int]:
     resp = auth_controllers.register(body)
     return resp, 201

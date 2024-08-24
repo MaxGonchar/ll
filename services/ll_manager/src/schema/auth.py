@@ -6,7 +6,7 @@ class SignOnResponse(BaseModel):
     refresh_token: str
 
 
-# TODO: Add validation to the schema
+# TODO(MaxGonchar): Add validation to the schema
 class SignOnRequest(BaseModel):
     first: str
     last: str

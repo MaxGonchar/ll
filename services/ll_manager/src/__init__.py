@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 from flask import Response, jsonify
 from flask_jwt_extended import JWTManager
@@ -9,19 +9,20 @@ from src.api.auth import auth_api
 from src.extensions import db
 
 # for alembic
-from src.models import User
+from src.models import User  # noqa: F401
 
-#TODO: add /api to all routes
+# TODO(MaxGonchar): add /api to all routes
 app = OpenAPI(__name__)
 app.config.from_object("src.config.Config")
 
 db.init_app(app)
-Migrate(app, db, directory=os.path.join("src", "migrations"))
+Migrate(app, db, directory=str(Path("src") / "migrations"))
 jwt = JWTManager(app)
 
 app.register_api(auth_api)
 
-# TODO: remove this route
+
+# TODO(MaxGonchar): remove this route
 @app.get("/")
 def hello_world() -> Response:
     return jsonify(hello="world!!!")
