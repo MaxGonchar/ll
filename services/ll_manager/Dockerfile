@@ -16,6 +16,7 @@ RUN pip install --upgrade pip
 COPY ./requirements.txt /usr/src/app/requirements.txt
 COPY ./dev_requirements.txt /usr/src/app/dev_requirements.txt
 RUN pip install -r requirements.txt
+# TODO(MaxGonchar): remove dev_requirements.txt
 RUN pip install -r dev_requirements.txt
 
 # copy project

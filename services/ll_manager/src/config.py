@@ -1,7 +1,8 @@
-from datetime import timedelta
 import os
+from datetime import timedelta
+from pathlib import Path
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+basedir = Path(__file__).resolve().parent
 
 
 def _get_db_uri() -> str:
@@ -15,8 +16,7 @@ def _get_db_uri() -> str:
 
 class Config:
     SQLALCHEMY_DATABASE_URI = _get_db_uri()
-    # SQLALCHEMY_TRACK_MODIFICATIONS = False
-    JWT_SECRET_KEY = os.environ['JWT_SECRET_KEY']
-    # TODO: move to env vars
+    JWT_SECRET_KEY = os.environ["JWT_SECRET_KEY"]
+    # TODO(MaxGonchar): move to env vars
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=1)
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=30)

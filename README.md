@@ -67,6 +67,11 @@ to exit\
 #### type checking
 `mypy src`
 
+#### linter
+`ruff format`
+`ruff check --fix`
+`ruff check`
+
 ---------------------------------------------------------------------------------------------------
 
 ### Tests
