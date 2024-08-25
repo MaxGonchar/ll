@@ -85,6 +85,7 @@ function run_unit_test() {
 
   echo "Running tests"
   pytest tests/unit -v
+  coverage report
 
   echo "Tearing down LL db"
   docker-compose -f "$docker_compose_file" down -v
