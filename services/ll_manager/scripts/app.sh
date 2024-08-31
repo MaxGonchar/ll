@@ -36,6 +36,7 @@ function wait_for_postgres() {
 
   if [ $attempt -eq $max_attempts ]; then
     >&2 echo "Max connection attempts reached. Exiting..."
+    exit 1
   fi
 
   echo "Postgres started"
