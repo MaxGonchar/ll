@@ -48,6 +48,14 @@ jobs:
           brew install docker-compose
           brew install colima
           colima start
+      - name: Check colima logs
+        if: failure()
+        run: |
+          if [ -f "$HOME/.colima/_lima/colima/ha.stderr.log" ]; then
+            cat "$HOME/.colima/_lima/colima/ha.stderr.log"
+          else
+            echo "Log file does not exist."
+          fi
       - uses: actions/checkout@v4
       - name: Set up Python 3.8
         uses: actions/setup-python@v5
