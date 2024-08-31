@@ -52,8 +52,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r dev_requirements.txt
+      - name: Set up shell
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y bash
       - name: Run unit tests
         working-directory: ./services/ll_manager
-        shell: sh
         run: |
           ./scripts/app.sh unit_test
