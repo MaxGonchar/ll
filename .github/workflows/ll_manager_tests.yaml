@@ -44,8 +44,7 @@ jobs:
     steps:
       - name: SetUp Docker
         run: |
-          brew install docker docker-compose
-          brew services start docker
+          brew install homebrew/cask/docker
       - uses: actions/checkout@v4
       - name: Set up Python 3.8
         uses: actions/setup-python@v5
