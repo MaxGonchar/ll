@@ -59,6 +59,8 @@ jobs:
       #       sleep 10
       #     done
 
+      - name: Check docker version
+        run: docker --version
       - uses: actions/checkout@v4
       - name: Set up Python 3.8
         uses: actions/setup-python@v5
