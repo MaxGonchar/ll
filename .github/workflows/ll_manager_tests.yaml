@@ -46,7 +46,7 @@ jobs:
         run: |
           brew install homebrew/cask/docker
           brew install docker-compose
-          open --background /Applications/Docker.app && while (! docker stats --no-stream ); do echo "Waiting for Docker to start..."; sleep 1; done
+          docker pull hello-world
       - uses: actions/checkout@v4
       - name: Set up Python 3.8
         uses: actions/setup-python@v5
