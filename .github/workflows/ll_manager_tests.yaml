@@ -10,16 +10,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: 3.11
-      - name: Change working directory
+      - name: Install dependencies
         working-directory: ./services/ll_manager
         run: |
-          ls
-      - name: Install dependencies
-        run: |
-          pwd
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install -r dev_requirements.txt
       - name: Typecheck with mypy
+        working-directory: ./services/ll_manager
         run: |
           mypy src
