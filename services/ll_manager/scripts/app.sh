@@ -27,7 +27,7 @@ wait_for_postgres() {
 
   echo "Waiting for postgres..."
 
-  until docker-compose -f "$docker_compose_file" exec postgres pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB" || [ $attempt -eq $max_attempts ]; do
+  until docker-compose -f "$docker_compose_file" exec -T postgres pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB" || [ $attempt -eq $max_attempts ]; do
     >&2 echo "Postgres is unavailable - sleeping"
     sleep 1
     attempt=$((attempt+1))
