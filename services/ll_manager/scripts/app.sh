@@ -1,13 +1,15 @@
 #!/bin/sh
 
-function validate_env() {
+validate_env() {
   env=$1
 
-  if [[ "$env" != "dev" && "$env" != "test" && "$env" != "test_integ" ]]; then
+  if [ "$env" != "dev" ] && [ "$env" != "test" ] && [ "$env" != "test_integ" ]; then
     echo "Invalid environment argument. Choose 'dev', 'test', or 'test_integ'."
     exit 1
   fi
 }
+
+
 
 function load_env_vars() {
   env=$1

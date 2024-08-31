@@ -71,6 +71,6 @@ jobs:
           pip install -r dev_requirements.txt
       - name: Run unit tests
         working-directory: ./services/ll_manager
-        shell: bash
+        shell: sh
         run: |
           ./scripts/app.sh unit_test
