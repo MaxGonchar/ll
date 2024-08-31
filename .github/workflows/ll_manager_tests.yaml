@@ -12,7 +12,8 @@ jobs:
           python-version: 3.11
       - name: Change working directory
         working-directory: ./services/ll_manager
-        run: pwd
+        run: |
+          ls
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
