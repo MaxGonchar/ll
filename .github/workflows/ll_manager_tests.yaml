@@ -46,21 +46,10 @@ jobs:
 
     timeout-minutes: 5
     steps:
-      # - name: SetUp Docker
-      #   run: |
-      #     echo "installing docker"
-      #     brew install homebrew/cask/docker
-      #     brew install docker-compose
-      #     echo "starting docker"
-      #     open /Applications/Docker.app
-      #     # wait for Docker daemon to be ready
-      #     while ! docker info > /dev/null 2>&1; do
-      #       echo "Waiting for Docker to start..."
-      #       sleep 10
-      #     done
-
       - name: Check docker version
         run: docker --version
+      - name: Check docker-compose version
+        run: which docker-compose && docker-compose --version
       - uses: actions/checkout@v4
       - name: Set up Python 3.8
         uses: actions/setup-python@v5
