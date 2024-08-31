@@ -9,21 +9,18 @@ validate_env() {
   fi
 }
 
-
-
-function load_env_vars() {
+load_env_vars() {
   env=$1
   validate_env "$env"
   env_vars_file="../../envs/.env.${env}"
 
   echo "Loading environment variables from $env_vars_file"
   set -o allexport
-  source "$env_vars_file"
+  . "$env_vars_file"
   set +o allexport
-
 }
 
-function wait_for_postgres() {
+wait_for_postgres() {
   docker_compose_file=$1
   max_attempts=10
   attempt=1
@@ -44,7 +41,7 @@ function wait_for_postgres() {
   echo "Postgres started"
 }
 
-function app_run() {
+app_run() {
   env=$1
   load_env_vars "$env"
   docker_compose_file="../../docker-compose.${env}.yml"
@@ -58,24 +55,23 @@ function app_run() {
 
   flask run
 
-  if [[ "$env" == "test" ]]; then
+  if [ "$env" = "test" ]; then
     docker-compose -f "$docker_compose_file" down -v
   else
     docker-compose -f "$docker_compose_file" down
   fi
 }
 
-
-function app_run_dev() {
+app_run_dev() {
   app_run dev
 }
 
-function app_run_test() {
+app_run_test() {
   app_run test
 }
 
 # TODO: move tests running to a separate script
-function run_unit_test() {
+run_unit_test() {
   load_env_vars test
   docker_compose_file="../../docker-compose.test.yml"
 
@@ -94,7 +90,7 @@ function run_unit_test() {
   docker-compose -f "$docker_compose_file" down -v
 }
 
-function upgrade_db() {
+upgrade_db() {
   env=$1
   load_env_vars "$env"
   docker_compose_file="../../docker-compose.${env}.yml"
@@ -106,7 +102,7 @@ function upgrade_db() {
   echo "LL db upgraded"
 }
 
-function run_integ_test() {
+run_integ_test() {
   load_env_vars test_integ
   docker_compose_file="../../docker-compose.test.yml"
 
