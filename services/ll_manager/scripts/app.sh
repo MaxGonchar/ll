@@ -22,7 +22,7 @@ load_env_vars() {
 
 wait_for_postgres() {
   docker_compose_file=$1
-  max_attempts=10
+  max_attempts=20
   attempt=1
 
   echo "Waiting for postgres..."
