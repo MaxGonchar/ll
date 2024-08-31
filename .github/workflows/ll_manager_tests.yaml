@@ -3,7 +3,7 @@ on: [push]
 
 jobs:
   typechecking:
-    runs-on: ubuntu-latest
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python 3.8
@@ -22,7 +22,7 @@ jobs:
           mypy src
 
   linter:
-    runs-on: ubuntu-latest
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python 3.8
@@ -40,7 +40,7 @@ jobs:
           ruff check
 
   unit_tests:
-    runs-on: macos-13
+    runs-on: macos-14
     steps:
       - name: SetUp Docker
         run: |
