@@ -45,7 +45,7 @@ jobs:
       - name: SetUp Docker
         run: |
           brew install homebrew/cask/docker
-          docker --version
+          open -a Docker
       - uses: actions/checkout@v4
       - name: Set up Python 3.8
         uses: actions/setup-python@v5
