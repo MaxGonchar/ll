@@ -22,7 +22,7 @@ load_env_vars() {
 
 wait_for_postgres() {
   docker_compose_file=$1
-  max_attempts=20
+  max_attempts=60
   attempt=1
 
   echo "Waiting for postgres..."
@@ -75,7 +75,7 @@ run_unit_test() {
   load_env_vars test
   docker_compose_file="../../docker-compose.test.yml"
 
-  docker-compose -f "$docker_compose_file" up postgres -d
+  docker-compose -f "$docker_compose_file" up -d postgres
 
   wait_for_postgres "$docker_compose_file"
 
