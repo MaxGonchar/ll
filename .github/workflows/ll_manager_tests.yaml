@@ -4,6 +4,7 @@ on: [push]
 jobs:
   typechecking:
     runs-on: macos-14
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python 3.8
@@ -23,6 +24,7 @@ jobs:
 
   linter:
     runs-on: macos-14
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python 3.8
@@ -41,12 +43,21 @@ jobs:
 
   unit_tests:
     runs-on: macos-14
+    timeout-minutes: 5
     steps:
       - name: SetUp Docker
         run: |
+          echo "installing docker"
           brew install homebrew/cask/docker
           brew install docker-compose
-          docker pull hello-world
+          echo "starting docker"
+          open /Applications/Docker.app
+          # wait for Docker daemon to be ready
+          while ! docker info > /dev/null 2>&1; do
+            echo "Waiting for Docker to start..."
+            sleep 10
+          done
+
       - uses: actions/checkout@v4
       - name: Set up Python 3.8
         uses: actions/setup-python@v5
