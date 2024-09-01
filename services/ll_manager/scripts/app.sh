@@ -71,35 +71,12 @@ app_run_test() {
 }
 
 # TODO: move tests running to a separate script
-# run_unit_test() {
-#   load_env_vars test
-#   docker_compose_file="../../docker-compose.test.yml"
-
-#   docker-compose -f "$docker_compose_file" up -d postgres
-
-#   wait_for_postgres "$docker_compose_file"
-
-#   echo "Set up LL db"
-#   flask db upgrade
-
-#   echo "Running tests"
-#   pytest tests/unit -v
-#   coverage report
-
-#   echo "Tearing down LL db"
-#   docker-compose -f "$docker_compose_file" down -v
-# }
-
 setup_unit_test_env() {
   #TODO: move to constants
   docker_compose_file="../../docker-compose.test.yml"
   load_env_vars test
 
-  echo "docker-compose $docker_compose_file"
-
   docker-compose -f "$docker_compose_file" up -d postgres
-
-  echo "after docker-compose up"
 
   wait_for_postgres "$docker_compose_file"
 
@@ -139,7 +116,26 @@ upgrade_db() {
   echo "LL db upgraded"
 }
 
-run_integ_test() {
+# run_integ_test() {
+#   load_env_vars test_integ
+#   docker_compose_file="../../docker-compose.test.yml"
+
+#   echo "Building docker images"
+#   docker-compose -f "$docker_compose_file" up -d --build
+
+#   echo "Waiting for ll_manager..."
+#   until curl -s -o /dev/null -w "%{http_code}" http://localhost:5000/health | grep -q 200; do
+#       >&2 echo "ll_manager is unavailable - sleeping"
+#       sleep 1
+#   done
+
+#   echo "Running tests"
+#   pytest tests/integration -v
+
+#   docker-compose -f "$docker_compose_file" down -v
+# }
+
+setup_integ_test_env() {
   load_env_vars test_integ
   docker_compose_file="../../docker-compose.test.yml"
 
@@ -151,11 +147,15 @@ run_integ_test() {
       >&2 echo "ll_manager is unavailable - sleeping"
       sleep 1
   done
+}
+
+run_integ_test() {
+  setup_integ_test_env
 
   echo "Running tests"
   pytest tests/integration -v
 
-  docker-compose -f "$docker_compose_file" down -v
+  tear_down_test_env
 }
 
 case "$1" in
@@ -167,6 +167,9 @@ case "$1" in
     ;;
   setup_unit_test_env)
     setup_unit_test_env
+    ;;
+  setup_integ_test_env)
+    setup_integ_test_env
     ;;
   unit_test)
     run_unit_test
