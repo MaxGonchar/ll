@@ -15,6 +15,8 @@ load_env_vars() {
   env_vars_file="../../envs/.env.${env}"
 
   echo "Loading environment variables from $env_vars_file"
+
+  echo "Loading environment variables from $env_vars_file"
   set -o allexport
   . "$env_vars_file"
   set +o allexport
