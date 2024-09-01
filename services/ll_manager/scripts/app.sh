@@ -20,6 +20,8 @@ load_env_vars() {
   set -o allexport
   . "$env_vars_file"
   set +o allexport
+
+  echo "Environment variables loaded"
 }
 
 wait_for_postgres() {
