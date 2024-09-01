@@ -61,8 +61,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install -r dev_requirements.txt
+      - name: Set uo test env
+        shell: bash
+        working-directory: ./services/ll_manager
+        run: |
+          ./scripts/app.sh setup_unit_test_env
       - name: Run unit tests
         working-directory: ./services/ll_manager
-        shell: sh
         run: |
-          ./scripts/app.sh unit_test
+          pytest tests/unit -v
+          coverage report
+      - name: Tear down test env
+        if: always()
+        shell: bash
+        working-directory: ./services/ll_manager
+        run: |
+          ./scripts/app.sh teardown_test_env

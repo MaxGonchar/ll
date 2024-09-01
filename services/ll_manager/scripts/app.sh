@@ -71,23 +71,53 @@ app_run_test() {
 }
 
 # TODO: move tests running to a separate script
-run_unit_test() {
-  load_env_vars test
-  docker_compose_file="../../docker-compose.test.yml"
+# run_unit_test() {
+#   load_env_vars test
+#   docker_compose_file="../../docker-compose.test.yml"
 
+#   docker-compose -f "$docker_compose_file" up -d postgres
+
+#   wait_for_postgres "$docker_compose_file"
+
+#   echo "Set up LL db"
+#   flask db upgrade
+
+#   echo "Running tests"
+#   pytest tests/unit -v
+#   coverage report
+
+#   echo "Tearing down LL db"
+#   docker-compose -f "$docker_compose_file" down -v
+# }
+
+setup_unit_test_env() {
+  docker_compose_file=$1
+  load_env_vars test
   docker-compose -f "$docker_compose_file" up -d postgres
 
   wait_for_postgres "$docker_compose_file"
 
   echo "Set up LL db"
   flask db upgrade
+}
+
+tear_down_test_env() {
+  docker_compose_file=$1
+  echo "Tearing down LL db"
+  docker-compose -f "$docker_compose_file" down -v
+}
+
+run_unit_test() {
+  docker_compose_file="../../docker-compose.test.yml"
+
+  setup_unit_test_env "$docker_compose_file"
 
   echo "Running tests"
   pytest tests/unit -v
   coverage report
 
   echo "Tearing down LL db"
-  docker-compose -f "$docker_compose_file" down -v
+  dtear_down_test_env "$docker_compose_file"
 }
 
 upgrade_db() {
@@ -128,8 +158,14 @@ case "$1" in
   test)
     app_run_test
     ;;
+  setup_unit_test_env)
+    setup_unit_test_env
+    ;;
   unit_test)
     run_unit_test
+    ;;
+  teardown_test_env)
+    tear_down_test_env
     ;;
   integ_test)
     run_integ_test
