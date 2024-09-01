@@ -1,4 +1,4 @@
-import jsonq
+import json
 from datetime import UTC, datetime
 from unittest.mock import patch
 
