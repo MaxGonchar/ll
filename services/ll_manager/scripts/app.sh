@@ -15,13 +15,9 @@ load_env_vars() {
   env_vars_file="../../envs/.env.${env}"
 
   echo "Loading environment variables from $env_vars_file"
-
-  echo "Loading environment variables from $env_vars_file"
   set -o allexport
   . "$env_vars_file"
   set +o allexport
-
-  echo "Environment variables loaded"
 }
 
 wait_for_postgres() {
@@ -98,7 +94,7 @@ setup_unit_test_env() {
   docker_compose_file=$1
   load_env_vars test
 
-  echo "docker-compose -f $docker_compose_file up -d postgres"
+  echo "docker-compose $docker_compose_file"
 
   docker-compose -f "$docker_compose_file" up -d postgres
 
