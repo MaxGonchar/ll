@@ -69,6 +69,7 @@ jobs:
       - name: Run unit tests
         working-directory: ./services/ll_manager
         run: |
+          export $(cat ../../envs/.env.test | xargs)
           pytest tests/unit -v
           coverage report
       - name: Tear down test env
