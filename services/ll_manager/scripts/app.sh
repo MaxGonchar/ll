@@ -91,7 +91,8 @@ app_run_test() {
 # }
 
 setup_unit_test_env() {
-  docker_compose_file=$1
+  #TODO: move to constants
+  docker_compose_file="../../docker-compose.test.yml"
   load_env_vars test
 
   echo "docker-compose $docker_compose_file"
@@ -104,27 +105,25 @@ setup_unit_test_env() {
 
   echo "Set up LL db"
   flask db upgrade
+
+  echo "$docker_compose_file"
 }
 
 tear_down_test_env() {
-  docker_compose_file=$1
-  echo "Tearing down LL db"
+  docker_compose_file="../../docker-compose.test.yml"
+  echo "Tearing test env down"
   docker-compose -f "$docker_compose_file" down -v
 }
 
 run_unit_test() {
-  docker_compose_file="../../docker-compose.test.yml"
-
-  echo "docker-compose $docker_compose_file"
-
-  setup_unit_test_env "$docker_compose_file"
+  setup_unit_test_env
 
   echo "Running tests"
   pytest tests/unit -v
   coverage report
 
   echo "Tearing down LL db"
-  dtear_down_test_env "$docker_compose_file"
+  tear_down_test_env
 }
 
 upgrade_db() {
