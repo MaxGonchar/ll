@@ -116,25 +116,6 @@ upgrade_db() {
   echo "LL db upgraded"
 }
 
-# run_integ_test() {
-#   load_env_vars test_integ
-#   docker_compose_file="../../docker-compose.test.yml"
-
-#   echo "Building docker images"
-#   docker-compose -f "$docker_compose_file" up -d --build
-
-#   echo "Waiting for ll_manager..."
-#   until curl -s -o /dev/null -w "%{http_code}" http://localhost:5000/health | grep -q 200; do
-#       >&2 echo "ll_manager is unavailable - sleeping"
-#       sleep 1
-#   done
-
-#   echo "Running tests"
-#   pytest tests/integration -v
-
-#   docker-compose -f "$docker_compose_file" down -v
-# }
-
 setup_integ_test_env() {
   load_env_vars test_integ
   docker_compose_file="../../docker-compose.test.yml"
