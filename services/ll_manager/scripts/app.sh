@@ -115,6 +115,8 @@ tear_down_test_env() {
 run_unit_test() {
   docker_compose_file="../../docker-compose.test.yml"
 
+  echo "docker-compose $docker_compose_file"
+
   setup_unit_test_env "$docker_compose_file"
 
   echo "Running tests"
