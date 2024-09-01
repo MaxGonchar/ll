@@ -97,7 +97,12 @@ app_run_test() {
 setup_unit_test_env() {
   docker_compose_file=$1
   load_env_vars test
+
+  echo "docker-compose -f $docker_compose_file up -d postgres"
+
   docker-compose -f "$docker_compose_file" up -d postgres
+
+  echo "after docker-compose up"
 
   wait_for_postgres "$docker_compose_file"
 
