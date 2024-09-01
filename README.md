@@ -1,3 +1,5 @@
+[![ll_manager_tests](https://github.com/MaxGonchar/ll/actions/workflows/ll_manager_tests.yaml/badge.svg)](https://github.com/MaxGonchar/ll/actions/workflows/ll_manager_tests.yaml)
+
 ## Knowledge base
 python:
 - [flask](https://flask.palletsprojects.com/en/3.0.x/)

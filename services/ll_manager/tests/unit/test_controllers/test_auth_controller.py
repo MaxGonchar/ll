@@ -72,7 +72,7 @@ def test_register() -> None:
         first=user.first,
         last=user.last,
         email=user.email,
-        role="default_role",
+        role="default_roleq",
         last_login=last_login,
     )
     actual_user_obj_to_add = mock_add_user.call_args.args[0]
