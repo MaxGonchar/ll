@@ -110,6 +110,7 @@ setup_unit_test_env() {
 }
 
 tear_down_test_env() {
+  load_env_vars test
   docker_compose_file="../../docker-compose.test.yml"
   echo "Tearing test env down"
   docker-compose -f "$docker_compose_file" down -v
