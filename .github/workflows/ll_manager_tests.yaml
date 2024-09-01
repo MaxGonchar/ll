@@ -70,8 +70,7 @@ jobs:
         working-directory: ./services/ll_manager
         run: |
           export $(cat ../../envs/.env.test | xargs)
-          pytest tests/unit -v
-          coverage report
+          pytest tests/unit -v --cov=src --cov-report=term-missing
       - name: Tear down test env
         if: always()
         shell: bash
