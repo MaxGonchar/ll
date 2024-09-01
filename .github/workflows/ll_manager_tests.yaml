@@ -1,3 +1,5 @@
+# TODO: Refactor: split, cache, vars
+#TODO: adjust branch safety
 name: ll_manager_tests
 on: [push]
 
